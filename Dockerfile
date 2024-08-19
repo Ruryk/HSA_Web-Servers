@@ -1,4 +1,4 @@
-# Use the nginx-cache-purge image
+# Use the nginx image
 FROM nginx:latest
 
 # Copy the Nginx configuration file
@@ -14,8 +14,8 @@ COPY script/purge_cache.sh /var/cache/nginx/purge_cache.sh
 RUN mkdir -p /var/cache/nginx && \
     chmod +x /var/cache/nginx/purge_cache.sh
 
-# Expose port 3000
-EXPOSE 3000
+# Expose ports for both services
+EXPOSE 3000 3001
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
