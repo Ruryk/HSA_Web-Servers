@@ -1,21 +1,17 @@
-# Use the nginx image
-FROM nginx:latest
+# Use the OpenResty image
+FROM openresty/openresty:latest
 
 # Copy the Nginx configuration file
-COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY nginx/nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 
 # Copy images to the appropriate directory
-COPY images /usr/share/nginx/html/images
+COPY images /usr/local/openresty/nginx/html/images
 
-# Copy the purge_cache.sh script to the appropriate directory
-COPY script/purge_cache.sh /var/cache/nginx/purge_cache.sh
-
-# Create the cache directory and make the script executable
-RUN mkdir -p /var/cache/nginx && \
-    chmod +x /var/cache/nginx/purge_cache.sh
+# Create the cache directory
+RUN mkdir -p /var/cache/nginx
 
 # Expose ports for both services
 EXPOSE 3000 3001
 
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start OpenResty
+CMD ["openresty", "-g", "daemon off;"]

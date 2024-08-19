@@ -58,3 +58,6 @@ docker-compose down
 ````bash
 docker system prune -a --volumes
 ````
+
+### Result
+![Result](screenshots/1.png "Title")
