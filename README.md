@@ -37,7 +37,7 @@ The X-Proxy-Cache header should be HIT, indicating that the image is now cached.
 ### 3. Purge cache (optional):
 To clear the cache for a specific image:
 ````bash
-curl -X PURGE http://localhost:3000/purge/images/1.jpg
+curl -i -X POST http://localhost:3000/purge/images/1.jpg
 ````
 
 ### 4. Verify cache clearing:
